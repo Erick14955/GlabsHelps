@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/msi1/databases/MSI",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:GlabsHelp",
+      "secretStore": "AzureAppSettings"
+    },
+    "mssql2": {
+      "type": "mssql.onprem",
+      "connectionId": "ConnectionStrings:GlabsHelps",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

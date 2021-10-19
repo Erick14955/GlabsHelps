@@ -1,0 +1,195 @@
+﻿@model IEnumerable<GlabsHelps.Models.Equipos>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Equipos</h2>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-xs-3" style="width: 190px;">
+            <input type="text" name="busqueda" class="form-control" />
+        </div>
+        <div class="col-xs-3">
+            <input type="submit" value="Buscar" class="btn btn-default border-dark" />
+        </div>
+        <div class="col-xs-3">
+            <a id="ButtonNuevo" data-toggle="modal" href="#PopupCreate" class="btn btn-default border-dark" style="position:relative; left:25%;">
+                Nuevo Equipo
+            </a>
+        </div>
+    </div>
+    <br />
+}
+
+<table class="table table-striped table-bordered table-hover table-sm">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Responsable)
+        </th>
+        <th>
+            Direcci&oacute;n AnyDesk
+        </th>
+        <th>
+            Direcci&oacute;n TeamViewer
+        </th>
+        <th>
+            Ip Equipo
+        </th>
+        <th>
+            Ip P&uacute;blica
+        </th>
+        <th>
+            Ip Local
+        </th>
+        <th>
+            Tipo Equipo
+        </th>
+        <th>
+            Usuario Equipo
+        </th>
+        <th>
+            Clave Equipo
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Responsable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DireccionAnyDesk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DireccionTeamViewer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IpEquipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IpPublica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IpLocal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoEquipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsuarioEquipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClaveEquipo)
+            </td>
+            <td>
+                <div class="row">
+                    <div class="col-xs-3" style="width: 100px;">
+                        <a id="EditarButton" data-toggle="modal" href="#PopupCreate" data-id="@item.IdCliente" class="btn btn-primary">
+                            <i class="glyphicon glyphicon-pencil" style="color: black;"></i>
+                        </a>
+                    </div>
+                    <div class="col-xs-3" style="width: 100px;">
+                        <a id="EliminarButton" data-toggle="modal" href="#PopupCreate" data-id="@item.IdCliente" class="btn btn-primary" style="position: relative; left: 80%; top: 100%">
+                            <i class="glyphicon glyphicon-trash" style="color: black;"></i>
+                        </a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+
+<div id="PopupCreate" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="MiPopLabel" aria-hidden="true" style="display: none;" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="MiPopLabel">Equipo</h4>
+            </div>
+            <div class="modal-body">
+                <div id="modal-content">
+                    Cargando...
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div id="PopupEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="MiPopLabel" aria-hidden="true" style="display: none;" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="MiPopLabel">Equipo</h4>
+            </div>
+            <div class="modal-body">
+                <div id="modal-content">
+                    Cargando...
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="PopupDetails" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="MiPopLabel" aria-hidden="true" style="display: none;" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="MiPopLabel">Equipo</h4>
+            </div>
+            <div class="modal-body">
+                <div id="modal-content">
+                    Cargando...
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="PopupEliminar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="MiPopLabel" aria-hidden="true" style="display: none;" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="MiPopLabel">Equipo</h4>
+            </div>
+            <div class="modal-body">
+                <div id="modal-content">
+                    Cargando...
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+@section scripts{
+    <script src="~/Scripts/Botones/EquiposBotones.js"></script>
+}
+
