@@ -10,7 +10,7 @@ namespace GlabsHelps.Models.ClasesUtilitarias
     public class DataAccess
     {
         ////victOR rEAL
-        public static string strconexion = @"Data Source=msi1.database.windows.net,1433;Initial Catalog=MSI;Persist Security Info=False;User ID=Msi;Password=Maria4030;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        public static string strconexion = @"Data Source=181.49.117.104;Initial Catalog=GarciaLabs;Persist Security Info=True;User ID=tiglabs;Password=Atiglabs5020";
 
 
         //////Doulay
