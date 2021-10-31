@@ -5,75 +5,112 @@
     Layout = null;
 }
 
+<style>
+    .form-control {
+        justify-content: center;
+        align-items: center;
+        font-family: 'Times New Roman';
+    }
+
+    h4 {
+        justify-content: center;
+        align-items: center;
+        font-family: 'Times New Roman';
+    }
+
+    .form-horizontal {
+        padding: 30px 40px;
+    }
+
+    .form-group {
+        position: relative;
+        padding-bottom: 20px;
+        margin-bottom: 10px;
+    }
+
+    .control-label {
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+
+    .form-control input {
+        font-family: 'Times New Roman';
+    }
+
+    a {
+        font-family: 'Times New Roman';
+    }
+
+    input button {
+        font-family: 'Times New Roman';
+    }
+</style>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Cliente</h4>
+        <h4 style="text-align: center;">Cliente</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IdCliente)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Nombre</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                <input id="Nombre" name="Nombre" placeholder="Nombre" type="text" value="" class="form-control" required oninvalid="this.setCustomValidity('El campo Nombre no puede quedar vacío')" oninput="this.setCustomValidity('')" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Dirección</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+                <input id="Direccion" name="Direccion" placeholder="Dirección" type="text" value="" class="form-control" required oninvalid="this.setCustomValidity('El campo Direccion no puede quedar vacío')" oninput="this.setCustomValidity('')" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Teléfono</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+                <input id="Telefono" name="Telefono" type="tel" placeholder="Teléfono" value="" class="form-control" required oninvalid="this.setCustomValidity('Favor especificar un teléfono válido.')" oninput="this.setCustomValidity('')" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CorreoCliente, "Correo Cliente", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Correo Cliente</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CorreoCliente, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CorreoCliente, "", new { @class = "text-danger" })
+                <input id="CorreoCliente" name="CorreoCliente" type="email" placeholder="Correo Cliente" value="" class="form-control" required oninvalid="this.setCustomValidity('Favor especificar una dirección correo válida.')" oninput="this.setCustomValidity('')" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Contacto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Contacto</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Contacto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Contacto, "", new { @class = "text-danger" })
+                <input id="Contacto" name="Contacto" type="text" value="" placeholder="Contacto" class="form-control" required oninvalid="this.setCustomValidity('El campo Contacto no puede quedar vacío')" oninput="this.setCustomValidity('')" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CelularContacto, "Celular Contacto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Celular Contacto</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CelularContacto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CelularContacto, "", new { @class = "text-danger" })
+                <input id="CelularContacto" name="CelularContacto" type="tel" value="" placeholder="Celular Contacto" class="form-control" required oninvalid="this.setCustomValidity('Favor especificar un teléfono válido.')" oninput="this.setCustomValidity('')" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CorreoContacto, "Correo Contacto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Correo Contacto</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CorreoContacto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CorreoContacto, "", new { @class = "text-danger" })
+                <input id="CorreoContacto" name="CorreoContacto" type="text" placeholder="Correo Contacto" value="" class="form-control" required oninvalid="this.setCustomValidity('Favor especificar una dirección correo válida.')" oninput="this.setCustomValidity('')" />
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="justify-content: center;">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-default" />
+                <a href="/Clientes/Index" class="btn btn-primary">
+                    Cancelar
+                </a>
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </div>
     </div>

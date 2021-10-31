@@ -1,15 +1,23 @@
 ﻿$("#ButtonNuevo").click(function (eve) {
-    $("#modal-content").load("/Clientes/Create");
+    var url = $(this).data('url');
+    $("#modal-content").load(url);
 });
 
 $("#EditarButton").click(function (eve) {
-    $("#modal-content").load("/Clientes/Edit/" + $(this).data("id"));
+    $("#modal-content").load();
 });
 
-$("#DetallesButton").click(function (eve) {
-    $("#modal-content").load("/Clientes/Details/" + $(this).data("id"));
-});
+//function Open() {
+//    var url = $(this).data('url');
+//    var decodeUrl = decodeURIComponent(url);
+//    $("#modal-content").load(decodeUrl);
+//}
 
 $("#EliminarButton").click(function (eve) {
-    $("#modal-content").load("/Clientes/Delete/" + $(this).data("id"));
+    $("#modal-content").load();
 });
+
+//$("#PopupEdit").validate({
+//    rules:
+
+//})

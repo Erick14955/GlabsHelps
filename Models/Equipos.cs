@@ -14,18 +14,13 @@ namespace GlabsHelps.Models
 		[Key]
 		public Int32 IdEquipo { get; set; }
 		public Int32 IdCliente { get; set; }
-		[Required]
 		public String Descripcion { get; set; }
-		[Required]
 		public String Responsable { get; set; }
-		[Required]
 		public String DireccionAnyDesk { get; set; }
-		[Required]
 		public String DireccionTeamViewer { get; set; }
 		public String IpEquipo { get; set; }
 		public String IpPublica { get; set; }
 		public String IpLocal { get; set; }
-
 		public String TipoEquipo { get; set; }
 		public String UsuarioEquipo { get; set; }
 		public String ClaveEquipo { get; set; }
@@ -111,7 +106,7 @@ namespace GlabsHelps.Models
 			cmd.Parameters.AddWithValue("@UsuarioEquipo", UsuarioEquipo);
 			cmd.Parameters.AddWithValue("@ClaveEquipo", ClaveEquipo);
 			cmd.Parameters.Add("@ValorRetorno", SqlDbType.Int);
-			cmd.Parameters["@ValorRetorno"].Direction = ParameterDirection.Output; //se debe especificar que es output
+			cmd.Parameters["@ValorRetorno"].Direction = ParameterDirection.Output;
 
 			return DataAccess.SaveSPIntValueReturn("@ValorRetorno", ref cmd);
 
@@ -126,8 +121,7 @@ namespace GlabsHelps.Models
 			cmd.CommandText = "SPDeleteEquipo";
 			cmd.Parameters.AddWithValue("@IdEquipo", IdEquipo);
 			cmd.Parameters.Add("@ValorRetorno", SqlDbType.Int);
-			cmd.Parameters["@ValorRetorno"].Direction = ParameterDirection.Output; //se debe especificar que es output
-
+			cmd.Parameters["@ValorRetorno"].Direction = ParameterDirection.Output;
 			return DataAccess.SaveSPIntValueReturn("@ValorRetorno", ref cmd);
 
 		}

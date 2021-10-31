@@ -14,13 +14,30 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            <div class="col-xs-3" style="width: 190px;">
+                <input type="search" name="busqueda" class="form-control" />
+            </div>
+            <div class="col-xs-3">
+                <input type="submit" value="Buscar" class="btn btn-default border-dark" />
+            </div>
+            <div class="col-xs-3">
+                <a id="ButtonNuevo" data-toggle="modal" data-target="#PopupEdit" class="btn btn-default border-dark" data-url="@Url.Action("Create")" style="position:relative; left:25%;">
+                    Nuevo Cliente
+                </a>
+            </div>
+        </div>
+        <br />
+    }
+
+
     <div id="PopupEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="MiPopLabel" aria-hidden="true" style="display: none;" data-keyboard="false" data-backdrop="static">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width:500px; height: 500px; position: relative;">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="MiPopLabel">Cliente</h4>
-                </div>
                 <div class="modal-body">
                     <div id="modal-content">
                         Cargando...
@@ -30,30 +47,8 @@
         </div>
     </div>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <div class="row">
-            <div class="col-xs-3" style="width: 190px;">
-                <input type="text" name="busqueda" class="form-control" />
-            </div>
-            <div class="col-xs-3">
-                <input type="submit" value="Buscar" class="btn btn-default border-dark" />
-            </div>
-            <div class="col-xs-3">
-                <a id="ButtonNuevo" data-toggle="modal" href="#PopupEdit" class="btn btn-default border-dark" style="position:relative; left:25%;">
-                    Nuevo Cliente
-                </a>
-            </div>
-        </div>
-        <br />
-    }
-
     <table class="table table-striped table-bordered table-hover table-sm">
         <tr>
-            <th>
-                Cliente Id
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
@@ -82,9 +77,6 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IdCliente)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Nombre)
                 </td>
                 <td>
@@ -106,10 +98,10 @@
                     @Html.DisplayFor(modelItem => item.CorreoContacto)
                 </td>
                 <td>
-                    <a id="EditarButton" data-toggle="modal" href="#PopupEdit" data-id="@item.IdCliente" class="btn btn-primary">
+                    <a id="EditarButton" data-toggle="modal" data-target="#PopupEdit" href="/Clientes/Edit/@item.IdCliente" class="btn btn-primary">
                         <i class="glyphicon glyphicon-pencil" style="color: black;"></i>
                     </a>
-                    <a id="EliminarButton" data-toggle="modal" href="#PopupEdit" data-id="@item.IdCliente" class="btn btn-primary">
+                    <a id="EliminarButton" data-toggle="modal" data-target="#PopupEdit" href="/Clientes/Delete/@item.IdCliente" class="btn btn-primary">
                         <i class="glyphicon glyphicon-trash" style="color: black;"></i>
                     </a>
                 </td>
@@ -133,12 +125,12 @@
             </div>
         </div>
 
-        <div id="PopupDetails" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="MiPopLabel" aria-hidden="true" style="display: none;" data-keyboard="false" data-backdrop="static">
+        <div id="PopupDetails" class="modal fade" style="display: none;" data-keyboard="false">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="MiPopLabel">Cliente</h4>
+                        <h4 class="modal-title">Cliente</h4>
                     </div>
                     <div class="modal-body">
                         <div id="modal-content">

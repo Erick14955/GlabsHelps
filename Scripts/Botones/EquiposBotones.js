@@ -3,13 +3,13 @@
 });
 
 $("#EditarButton").click(function (eve) {
-    $("#modal-content").load("/Equipos/Edit/" + $(this).data("id"));
-});
-
-$("#DetallesButton").click(function (eve) {
-    $("#modal-content").load("/Equipos/Details/" + $(this).data("id"));
+    $("#modal-content").load();
 });
 
 $("#EliminarButton").click(function (eve) {
-    $("#modal-content").load("/Equipos/Delete/" + $(this).data("id"));
+    $("#modal-content").load();
 });
+
+//document.addEventListener("DOMContentLoaded", Function(){
+//    document.ge
+//});

@@ -16,8 +16,8 @@ namespace GlabsHelps.Models
 		public String Nombre { get; set; }
 		public String Direccion { get; set; }
 		[DataType(DataType.PhoneNumber)]
-		[RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Favor especificar un teléfono válido.")]
-		[Required(ErrorMessage = "Favor especificar el teléfono del empleado.")]
+		[RegularExpression(@"^\(?([0-9]{3})\)?[.]?([0-9]{3})[. ]?([0-9]{4})$", ErrorMessage = "Favor especificar un teléfono válido.")]
+		[Required(ErrorMessage = "Favor especificar el teléfono del Cliente.")]
 		[Display(Name = "Teléfono")]
 		public String Telefono { get; set; }
 		[DataType(DataType.EmailAddress)]
@@ -93,7 +93,7 @@ namespace GlabsHelps.Models
 			cmd.Parameters.AddWithValue("@CelularContacto", CelularContacto);
 			cmd.Parameters.AddWithValue("@CorreoContacto", CorreoContacto);
 			cmd.Parameters.Add("@ValorRetorno", SqlDbType.Int);
-			cmd.Parameters["@ValorRetorno"].Direction = ParameterDirection.Output; //se debe especificar que es output
+			cmd.Parameters["@ValorRetorno"].Direction = ParameterDirection.Output;
 
 			return DataAccess.SaveSPIntValueReturn("@ValorRetorno", ref cmd);
 
@@ -108,7 +108,7 @@ namespace GlabsHelps.Models
 			cmd.CommandText = "SPDeleteCliente";
 			cmd.Parameters.AddWithValue("@IdCliente", IdCliente);
 			cmd.Parameters.Add("@ValorRetorno", SqlDbType.Int);
-			cmd.Parameters["@ValorRetorno"].Direction = ParameterDirection.Output; //se debe especificar que es output
+			cmd.Parameters["@ValorRetorno"].Direction = ParameterDirection.Output;
 
 			return DataAccess.SaveSPIntValueReturn("@ValorRetorno", ref cmd);
 

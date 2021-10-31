@@ -19,7 +19,7 @@
     @Html.AntiForgeryToken()
     <div class="row">
         <div class="col-xs-3" style="width: 190px;">
-            <input type="text" name="busqueda" class="form-control" />
+            <input type="search" name="busqueda" class="form-control" />
         </div>
         <div class="col-xs-3">
             <input type="submit" value="Buscar" class="btn btn-default border-dark" />
@@ -55,9 +55,6 @@
         </th>
         <th>
             Ip P&uacute;blica
-        </th>
-        <th>
-            Ip Local
         </th>
         <th>
             Tipo Equipo
@@ -96,9 +93,6 @@
                 @Html.DisplayFor(modelItem => item.IpPublica)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IpLocal)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.TipoEquipo)
             </td>
             <td>
@@ -108,30 +102,20 @@
                 @Html.DisplayFor(modelItem => item.ClaveEquipo)
             </td>
             <td>
-                <div class="row">
-                    <div class="col-xs-3" style="width: 100px;">
-                        <a id="EditarButton" data-toggle="modal" href="#PopupCreate" data-id="@item.IdCliente" class="btn btn-primary">
-                            <i class="glyphicon glyphicon-pencil" style="color: black;"></i>
-                        </a>
-                    </div>
-                    <div class="col-xs-3" style="width: 100px;">
-                        <a id="EliminarButton" data-toggle="modal" href="#PopupCreate" data-id="@item.IdCliente" class="btn btn-primary" style="position: relative; left: 80%; top: 100%">
-                            <i class="glyphicon glyphicon-trash" style="color: black;"></i>
-                        </a>
-                    </div>
-                </div>
+                <a id="EditarButton" data-toggle="modal" data-target="#PopupCreate" href="/Equipos/Edit/@item.IdEquipo" class="btn btn-primary">
+                    <i class="glyphicon glyphicon-pencil" style="color: black;"></i>
+                </a>
+                <a id="EliminarButton" data-toggle="modal" data-target="#PopupCreate" href="/Equipos/Delete/@item.IdEquipo" class="btn btn-primary">
+                    <i class="glyphicon glyphicon-trash" style="color: black;"></i>
+                </a>
             </td>
         </tr>
     }
 </table>
 
 <div id="PopupCreate" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="MiPopLabel" aria-hidden="true" style="display: none;" data-keyboard="false" data-backdrop="static">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="width: 550px; height:700px;">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="MiPopLabel">Equipo</h4>
-            </div>
             <div class="modal-body">
                 <div id="modal-content">
                     Cargando...

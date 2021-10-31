@@ -56,6 +56,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -130,19 +131,9 @@
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\EquiposController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Data\GlabsHelpsContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202110182142085_InitialCreate.cs" />
-    <Compile Include="Migrations\202110182142085_InitialCreate.Designer.cs">
-      <DependentUpon>202110182142085_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202110191710323_Inicial.cs" />
-    <Compile Include="Migrations\202110191710323_Inicial.Designer.cs">
-      <DependentUpon>202110191710323_Inicial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ClasesUtilitarias\DataAccess.cs" />
     <Compile Include="Models\ClasesUtilitarias\Utilidades.cs" />
     <Compile Include="Models\Clientes.cs" />
@@ -160,6 +151,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\bootstrap-icons.woff" />
+    <Content Include="fonts\bootstrap-icons.woff2" />
     <None Include="Properties\PublishProfiles\GlabsHelps20211019131207 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Botones\ClientesBotones.js" />
@@ -214,14 +207,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202110182142085_InitialCreate.resx">
-      <DependentUpon>202110182142085_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110191710323_Inicial.resx">
-      <DependentUpon>202110191710323_Inicial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

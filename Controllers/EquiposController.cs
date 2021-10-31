@@ -6,129 +6,125 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using GlabsHelps.Data;
 using GlabsHelps.Models;
 
 namespace GlabsHelps.Controllers
 {
     public class EquiposController : Controller
     {
-        private GlabsHelpsContext db = new GlabsHelpsContext();
-
-        // GET: Equipos
-        public ActionResult Index(string busqueda)
+        public ActionResult Index()
         {
-
-            var equipos = from s in db.Equipos select s;
-
-            if (!string.IsNullOrEmpty(busqueda))
-            {
-                equipos = equipos.Where(s => s.IdCliente.ToString().Contains(busqueda) || s.Descripcion.Contains(busqueda) || s.Responsable.Contains(busqueda)
-                || s.DireccionAnyDesk.Contains(busqueda) || s.DireccionTeamViewer.Contains(busqueda) || s.IpEquipo.Contains(busqueda)
-                || s.IpPublica.Contains(busqueda) || s.IpLocal.Contains(busqueda) || s.TipoEquipo.Contains(busqueda) || s.UsuarioEquipo.Contains(busqueda)
-                || s.ClaveEquipo.Contains(busqueda));
-            }
-            return View(equipos.ToList());
+            return View(Equipos.EquipoList());
         }
 
-        // GET: Equipos/Details/5
-        public ActionResult Details(int? id)
+        [HttpPost]
+        public ActionResult Index(string busqueda)
         {
-            if (id == null)
+            var equip = from s in Equipos.EquipoList() select s;
+            if (!string.IsNullOrEmpty(busqueda))
+            {
+                return View(equip.Where(s => s.IdCliente.ToString().Contains(busqueda) || s.Descripcion.Contains(busqueda)));
+            }
+            else
+            {
+                return View(Equipos.EquipoList());
+            }
+        }
+
+        public ActionResult Details(decimal id)
+        {
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Equipos equipos = db.Equipos.Find(id);
-            if (equipos == null)
+            Equipos equip = new Equipos(id);
+            if (equip.IdEquipo == 0)
             {
                 return HttpNotFound();
             }
-            return View(equipos);
+            return View(equip);
         }
 
-        // GET: Equipos/Create
         public ActionResult Create()
         {
+            var cli = from s in Clientes.ClienteList() select s;
+            List<SelectListItem> items = new List<SelectListItem>();
+            foreach (var clien in cli)
+            {
+                items.Add(new SelectListItem
+                {
+                    Value = clien.IdCliente.ToString(),
+                    Text = clien.Nombre,
+                    Selected = false
+                });
+            }
+
+            ViewBag.items = items;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdEquipo,IdCliente,Descripcion,Responsable,DireccionAnyDesk,DireccionTeamViewer,IpEquipo,IpPublica,IpLocal,TipoEquipo,UsuarioEquipo,ClaveEquipo")] Equipos equipos)
+        public ActionResult Create([Bind(Include = "IdEquipo,IdCliente,Descripcion,Responsable,DireccionAnyDesk,DireccionTeamViewer,IpEquipo,IpPublica,IpLocal,TipoEquipo,UsuarioEquipo,ClaveEquipo")] Equipos equip)
         {
             if (ModelState.IsValid)
             {
-                db.Equipos.Add(equipos);
-                db.SaveChanges();
+                equip.Guardar();
                 return RedirectToAction("Index");
             }
 
-            return View(equipos);
+            return View(equip);
         }
 
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(decimal id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Equipos equipos = db.Equipos.Find(id);
-            if (equipos == null)
+            Equipos equip = new Equipos(id);
+            if (equip.IdEquipo == 0)
             {
                 return HttpNotFound();
             }
-            return View(equipos);
+            return View(equip);
         }
 
-        // POST: Equipos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdEquipo,IdCliente,Descripcion,Responsable,DireccionAnyDesk,DireccionTeamViewer,IpEquipo,IpPublica,IpLocal,TipoEquipo,UsuarioEquipo,ClaveEquipo")] Equipos equipos)
+        public ActionResult Edit([Bind(Include = "IdEquipo,IdCliente,Descripcion,Responsable,DireccionAnyDesk,DireccionTeamViewer,IpEquipo,IpPublica,IpLocal,TipoEquipo,UsuarioEquipo,ClaveEquipo")] Equipos equip)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(equipos).State = EntityState.Modified;
-                db.SaveChanges();
+                equip.Guardar();
                 return RedirectToAction("Index");
             }
-            return View(equipos);
+            return View(equip);
         }
 
         // GET: Equipos/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(decimal id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Equipos equipos = db.Equipos.Find(id);
-            if (equipos == null)
+            Equipos equip = new Equipos(id);
+            if (equip.IdEquipo == 0)
             {
                 return HttpNotFound();
             }
-            return View(equipos);
+            return View(equip);
         }
 
         // POST: Equipos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(decimal id)
         {
-            Equipos equipos = db.Equipos.Find(id);
-            db.Equipos.Remove(equipos);
-            db.SaveChanges();
+            Equipos equip = new Equipos(id);
+            equip.Eliminar();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

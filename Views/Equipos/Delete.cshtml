@@ -7,7 +7,6 @@
 
 <h3>Estas seguro de eliminar este equipo?</h3>
 <div>
-    <h4>Equipo</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -104,9 +103,12 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> 
-        </div>
+<div class="form-actions no-color">
+    <input type="submit" value="Eliminar" class="btn btn-default" />
+    <a href="/Equipos/Index" class="btn btn-default">
+        Salir
+    </a>
+</div>
     }
 </div>
 

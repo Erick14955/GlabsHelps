@@ -10,14 +10,8 @@ namespace GlabsHelps.Models.ClasesUtilitarias
     public class DataAccess
     {
         ////victOR rEAL
-        public static string strconexion = @"Data Source=181.49.117.104;Initial Catalog=GarciaLabs;Persist Security Info=True;User ID=tiglabs;Password=Atiglabs5020";
-
-
-        //////Doulay
-        //public static string strconexion = @"Data Source=10.0.0.163,49888;Initial Catalog=doulay;Persist Security Info=True;User ID=ti;Password=Ati5020";
-
-
-
+        public static string strconexionCentral = @"Data Source=181.49.117.104;Initial Catalog=GlabsHelp;Persist Security Info=True;User ID=ti;Password=Ati5020";
+        public static string strconexion = @"Data Source=181.49.117.104;Initial Catalog=GlabsHelp;Persist Security Info=True;User ID=ti;Password=Ati5020";
 
         public string Conexion
         {

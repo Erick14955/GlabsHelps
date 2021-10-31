@@ -4,45 +4,52 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
-using GlabsHelps.Data;
 using GlabsHelps.Models;
 
 namespace GlabsHelps.Controllers
 {
     public class ClientesController : Controller
     {
-        private GlabsHelpsContext db = new GlabsHelpsContext();
-
-        public ActionResult Index(string busqueda)
+        //int eso = 0;
+        public ActionResult Index()
         {
-            ViewData["CurrentFilter"] = busqueda;
-            var clientes = from s in db.Clientes select s;
 
-            if (!string.IsNullOrEmpty(busqueda))
-            {
-                clientes = clientes.Where(s => s.IdCliente.ToString().Contains(busqueda) || s.Nombre.Contains(busqueda) || s.Direccion.Contains(busqueda)
-                || s.Telefono.ToString().Contains(busqueda) || s.CorreoCliente.Contains(busqueda) || s.Contacto.Contains(busqueda)
-                || s.CelularContacto.Contains(busqueda) || s.CorreoContacto.Contains(busqueda));
-            }
-            return View(clientes.ToList());
+            return View(Clientes.ClienteList());
         }
 
-        public ActionResult Details(int? id)
+        [HttpPost]
+        public ActionResult Index(string busqueda)
         {
-            if (id == null)
+            var cli = from s in Clientes.ClienteList() select s;
+            if (!string.IsNullOrEmpty(busqueda))
+            {
+                return View(cli.Where( s => s.Nombre.Contains(busqueda)));
+            }
+            else
+            {
+                return View(Clientes.ClienteList());
+            }
+           
+        }
+
+        public ActionResult Details(Decimal id)
+        {
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Clientes clientes = db.Clientes.Find(id);
-            if (clientes == null)
+            Clientes clien = new Clientes(id);
+               
+            if (clien.IdCliente==0)
             {
                 return HttpNotFound();
             }
-            return View(clientes);
+            return View(clien);
         }
-
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -50,76 +57,77 @@ namespace GlabsHelps.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdCliente,Nombre,Direccion,Telefono,CorreoCliente,Contacto,CelularContacto,CorreoContacto")] Clientes clientes)
+        public ActionResult Create([Bind(Include = "IdCliente,Nombre,Direccion,Telefono,CorreoCliente,Contacto,CelularContacto,CorreoContacto")] Clientes clie)
         {
             if (ModelState.IsValid)
             {
-                db.Clientes.Add(clientes);
-                db.SaveChanges();
+                clie.Guardar();
                 return RedirectToAction("Index");
             }
 
-            return View(clientes);
+            return View(clie);
         }
 
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(decimal id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Clientes clientes = db.Clientes.Find(id);
-            if (clientes == null)
+            Clientes clien = new Clientes(id); 
+            if (clien.IdCliente == 0)
             {
                 return HttpNotFound();
             }
-            return View(clientes);
+            return View(clien);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdCliente,Nombre,Direccion,Telefono,CorreoCliente,Contacto,CelularContacto,CorreoContacto")] Clientes clientes)
+        public ActionResult Edit([Bind(Include = "IdCliente,Nombre,Direccion,Telefono,CorreoCliente,Contacto,CelularContacto,CorreoContacto")] Clientes clien)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(clientes).State = EntityState.Modified;
-                db.SaveChanges();
+                clien.Guardar();
                 return RedirectToAction("Index");
             }
-            return View(clientes);
+            return View(clien);
         }
 
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(decimal id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Clientes clientes = db.Clientes.Find(id);
-            if (clientes == null)
+            Clientes clien = new Clientes(id);
+            if (clien.IdCliente == 0)
             {
                 return HttpNotFound();
             }
-            return View(clientes);
+            return View(clien);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Clientes clientes = db.Clientes.Find(id);
-            db.Clientes.Remove(clientes);
-            db.SaveChanges();
+            Clientes clien = new Clientes(id);
+            clien.Eliminar();
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+        public static bool ValidarCorreo(string email)
         {
-            if (disposing)
+            try
             {
-                db.Dispose();
+                var addr = new MailAddress(email);
+                return addr.Address == email;
             }
-            base.Dispose(disposing);
+            catch
+            {
+                return false;
+            }
         }
     }
 }

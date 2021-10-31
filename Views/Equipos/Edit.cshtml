@@ -6,86 +6,108 @@
     Layout = null;
 }
 
+<style>
+    .form-control {
+        justify-content: center;
+        align-items: center;
+        font-family: 'Times New Roman';
+    }
+
+    h4 {
+        justify-content: center;
+        align-items: center;
+        font-family: 'Times New Roman';
+    }
+
+    .form-horizontal {
+        padding: 30px 40px;
+    }
+
+    .form-group {
+        position: relative;
+        padding-bottom: 20px;
+        margin-bottom: 10px;
+    }
+
+    .control-label {
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+
+    .form-control input {
+        font-family: 'Times New Roman';
+    }
+
+    a {
+        font-family: 'Times New Roman';
+    }
+
+    input button {
+        font-family: 'Times New Roman';
+    }
+</style>
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
     <div class="form-horizontal">
-        <h4>Equipo</h4>
+        <h4>Equipos</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.IdEquipo)
-
         <div class="form-group">
-            @Html.LabelFor(model => model.IdCliente, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Id Cliente</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IdCliente, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })
+                <input id="IdCliente" name="IdCliente" placeholder="Id Cliente" type="number" value="" class="form-control" required oninvalid="this.setCustomValidity('El campo Id Cliente no puede quedar vacío')" oninput="this.setCustomValidity('')" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Descripción</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                <input id="Descripcion" name="Descripcion" placeholder="Descripción" type="text" value="" class="form-control" required oninvalid="this.setCustomValidity('El campo Descripción no puede quedar vacío')" oninput="this.setCustomValidity('')" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Responsable, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Responsable</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Responsable, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Responsable, "", new { @class = "text-danger" })
+                <input id="Responsable" name="Responsable" placeholder="Responsable" type="text" value="" class="form-control" required oninvalid="this.setCustomValidity('El campo Responsable no puede quedar vacío')" oninput="this.setCustomValidity('')" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DireccionAnyDesk, "Dirección Anydesk", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Dirección AnyDesk</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DireccionAnyDesk, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DireccionAnyDesk, "", new { @class = "text-danger" })
+                <input id="DireccionAnyDesk" name="DireccionAnyDesk" placeholder="Dirección AnyDesk" type="text" value="" class="form-control" required oninvalid="this.setCustomValidity('El campo Dirección AnyDesk no puede quedar vacío')" oninput="this.setCustomValidity('')" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DireccionTeamViewer, "Dirección TeamViewer", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Dirección TeamViewer</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DireccionTeamViewer, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DireccionTeamViewer, "", new { @class = "text-danger" })
+                <input id="DireccionTeamViewer" name="DireccionTeamViewer" placeholder="Dirección TeamViewer" type="text" value="" class="form-control" required oninvalid="this.setCustomValidity('El campo Dirección TeamViewer no puede quedar vacío')" oninput="this.setCustomValidity('')" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IpEquipo, "Ip Equipo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Ip Equipo</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IpEquipo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IpEquipo, "", new { @class = "text-danger" })
+                <input id="IpEquipo" name="IpEquipo" placeholder="Ip Equipo" type="text" value="" class="form-control" required oninvalid="this.setCustomValidity('El campo Ip Equipo no puede quedar vacío')" oninput="this.setCustomValidity('')" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IpPublica, "Ip Pública", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Ip Pública</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IpPublica, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IpPublica, "", new { @class = "text-danger" })
+                <input id="IpPublica" name="IpPublica" placeholder="Ip Pública" type="text" value="" class="form-control" required oninvalid="this.setCustomValidity('El campo Ip Pública no puede quedar vacío')" oninput="this.setCustomValidity('')" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IpLocal, "Ip Local", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Tipo Equipo</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IpLocal, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IpLocal, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TipoEquipo, "Tipo Equipo", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TipoEquipo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TipoEquipo, "", new { @class = "text-danger" })
+                <input id="TipoEquipo" name="TipoEquipo" placeholder="Tipo Equipo" type="text" value="" class="form-control" required oninvalid="this.setCustomValidity('El campo Tipo Equipo no puede quedar vacío')" oninput="this.setCustomValidity('')" />
             </div>
         </div>
 
@@ -107,7 +129,10 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <a href="/Equipos/Index" class="btn btn-primary">
+                    Salir
+                </a>
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </div>
     </div>
