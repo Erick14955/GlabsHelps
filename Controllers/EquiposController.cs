@@ -67,6 +67,30 @@ namespace GlabsHelps.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdEquipo,IdCliente,Descripcion,Responsable,DireccionAnyDesk,DireccionTeamViewer,IpEquipo,IpPublica,IpLocal,TipoEquipo,UsuarioEquipo,ClaveEquipo")] Equipos equip)
         {
+            if (string.IsNullOrEmpty(equip.DireccionTeamViewer))
+            {
+                equip.DireccionTeamViewer = "";
+            }
+            if (string.IsNullOrEmpty(equip.IpEquipo))
+            {
+                equip.IpEquipo = "";
+            }
+            if (string.IsNullOrEmpty(equip.IpPublica))
+            {
+                equip.IpPublica = "";
+            }
+            if (string.IsNullOrEmpty(equip.IpLocal))
+            {
+                equip.IpLocal = "";
+            }
+            if (string.IsNullOrEmpty(equip.UsuarioEquipo))
+            {
+                equip.UsuarioEquipo = "";
+            }
+            if (string.IsNullOrEmpty(equip.ClaveEquipo))
+            {
+                equip.ClaveEquipo = "";
+            }
             if (ModelState.IsValid)
             {
                 equip.Guardar();
@@ -78,6 +102,27 @@ namespace GlabsHelps.Controllers
 
         public ActionResult Edit(decimal id)
         {
+            var cli = from s in Clientes.ClienteList() select s;
+            List<SelectListItem> items = new List<SelectListItem>();
+            foreach (var clien in cli)
+            {
+                items.Add(new SelectListItem
+                {
+                    Value = clien.IdCliente.ToString(),
+                    Text = clien.Nombre,
+                    Selected = false
+                });
+            }
+
+            ViewBag.items = items;
+
+            List<SelectListItem> tipos = new List<SelectListItem>()
+            {
+                new SelectListItem { Value = "Servidor", Text ="Servidor", Selected = false },
+                new SelectListItem { Value = "Cliente", Text = "Cliente", Selected = false }
+            };
+
+            ViewBag.tipos = tipos;
             if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

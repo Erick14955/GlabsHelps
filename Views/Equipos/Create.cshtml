@@ -54,16 +54,13 @@
         <div class="form-group">
             <label class="control-label col-md-2">Id Cliente</label>
             <div class="col-md-10">
-                <select id="IdCliente" name="IdCliente" class="form-control">
+                <select id="IdCliente" name="IdCliente" class="form-control" required oninvalid="this.setCustomValidity('Seleccione un cliente')" oninput="this.setCustomValidity('')">
                     <option value="0" disabled selected>Seleccionar Cliente</option>
                     @foreach(var item in items)
                     {
                         <option value="@Convert.ToInt32(item.Value)">@item.Text</option>
                     }
                 </select>
-                @*@Html.DropDownListFor(model => model.IdCliente, items, "Selecciona un cliente", new { @class = "form-control"})*@
-                @*@Html.DropDownListFor(model => model.IdCliente, (IEnumerable<SelectListItem>)ViewBag.items, "Seleccionar un cliente", new { @class = "form-control"})*@
-                @*<input id="IdCliente" name="IdCliente" placeholder="Id Cliente" type="" value="" class="form-control" required oninvalid="this.setCustomValidity('El campo Id Cliente no puede quedar vacío')" oninput="this.setCustomValidity('')" />*@
             </div>
         </div>
 
@@ -91,28 +88,33 @@
         <div class="form-group">
             <label class="control-label col-md-2">Dirección TeamViewer</label>
             <div class="col-md-10">
-                <input id="DireccionTeamViewer" name="DireccionTeamViewer" placeholder="Dirección TeamViewer" type="text" value="" class="form-control" required oninvalid="this.setCustomValidity('El campo Dirección TeamViewer no puede quedar vacío')" oninput="this.setCustomValidity('')" />
+                <input id="DireccionTeamViewer" name="DireccionTeamViewer" placeholder="Dirección TeamViewer" type="text" value="" class="form-control" />
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-md-2">Ip Equipo</label>
             <div class="col-md-10">
-                <input id="IpEquipo" name="IpEquipo" placeholder="Ip Equipo" type="text" value="" class="form-control" required oninvalid="this.setCustomValidity('El campo Ip Equipo no puede quedar vacío')" oninput="this.setCustomValidity('')" />
+                <input id="IpEquipo" name="IpEquipo" placeholder="Ip Equipo" type="text" value="" class="form-control"/>
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-md-2">Ip Pública</label>
             <div class="col-md-10">
-                <input id="IpPublica" name="IpPublica" placeholder="Ip Pública" type="text" value="" class="form-control" required oninvalid="this.setCustomValidity('El campo Ip Pública no puede quedar vacío')" oninput="this.setCustomValidity('')" />
+                <input id="IpPublica" name="IpPublica" placeholder="Ip Pública" type="text" value="" class="form-control" />
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-md-2">Tipo Equipo</label>
             <div class="col-md-10">
-                <input id="TipoEquipo" name="TipoEquipo" placeholder="Tipo Equipo" type="text" value="" class="form-control" required oninvalid="this.setCustomValidity('El campo Tipo Equipo no puede quedar vacío')" oninput="this.setCustomValidity('')" />
+                <select id="TipoEquipo" name="TipoEquipo" class="form-control" required oninvalid="this.setCustomValidity('Seleccione un tipo de equipo')" oninput="this.setCustomValidity('')">
+                    <option value="0" disabled selected>Seleccionar un tipo de equipo</option>
+                    <option value="Servidor">Servidor</option>
+                    <option value="Cliente">Cliente</option>
+                </select>
+
             </div>
         </div>
 
