@@ -10,3 +10,7 @@ $("#EditarButton").click(function (eve) {
 $("#EliminarButton").click(function (eve) {
     $("#modal-content").load();
 });
+
+$("#DetalleButton").click(function (eve) {
+    $("#modal-content").load();
+});

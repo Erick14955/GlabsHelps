@@ -1,0 +1,92 @@
+﻿@model GlabsHelps.Models.Solicitudes
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Solicitudes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Descripción
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Detalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detalle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            Fecha Finalizado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaFinalizado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estatus)
+        </dd>
+
+        <dt>
+            Id Cliente
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdCliente)
+        </dd>
+
+        <dt>
+            Id Usuario
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdUsuario)
+        </dd>
+
+        <dt>
+            Id Ingeniero
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdIngeniero)
+        </dd>
+
+        <dt>
+            Fecha Agenda
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaAgenda)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="/Solicitudes/Index" class="btn btn-primary" style="font-family: 'Times New Roman';">
+        Cancelar
+    </a>
+</p>
