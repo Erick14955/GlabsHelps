@@ -1,0 +1,70 @@
+﻿@model GlabsHelps.Models.DocumentoSolicitud
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+    List<SelectListItem> items = (List<SelectListItem>)ViewBag.items;
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>DocumentoSolicitud</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IdDocumento)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdSolicitud, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IdSolicitud, items, "Seleccione una solicitud", new { htmlAttributes = new { @class = "form-control",  } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NombreDocumento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NombreDocumento, new { htmlAttributes = new { @class = "form-control", required = "required", oninvalid = "this.setCustomValidity('El campo Nombre Documento no puede quedar vacío')", oninput = "this.setCustomValidity('')" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FechaAgregado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FechaAgregado, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdUsuario, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IdUsuario, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoDocumento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TipoDocumento, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a href="/Solicitudes/Index" class="btn btn-primary" style="font-family: 'Times New Roman';">
+                    Cancelar
+                </a>
+                <input type="submit" value="Guardar" class="btn btn-primary" style="font-family: 'Times New Roman';" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

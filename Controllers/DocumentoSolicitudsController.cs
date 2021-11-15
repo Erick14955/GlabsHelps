@@ -11,24 +11,23 @@ using GlabsHelps.Models;
 
 namespace GlabsHelps.Controllers
 {
-    public class SolicitudesController : Controller
+    public class DocumentoSolicitudsController : Controller
     {
         public ActionResult Index()
         {
-            return View(Solicitudes.SolicitudesList());
+            return View(DocumentoSolicitud.DocumentoSolicitudList());
         }
 
-        [HttpPost]
         public ActionResult Index(string busqueda)
         {
-            var solic = from s in Solicitudes.SolicitudesList() select s;
+            var solic = from s in DocumentoSolicitud.DocumentoSolicitudList() select s;
             if (!string.IsNullOrEmpty(busqueda))
             {
-                return View(solic.Where(s => s.Descripcion.Contains(busqueda) || s.Detalle.Contains(busqueda)));
+                return View(solic.Where(s => s.IdSolicitud.ToString().Contains(busqueda) || s.NombreDocumento.Contains(busqueda)));
             }
             else
             {
-                return View(Solicitudes.SolicitudesList());
+                return View(DocumentoSolicitud.DocumentoSolicitudList());
             }
         }
 
@@ -38,91 +37,83 @@ namespace GlabsHelps.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Solicitudes solic = new Solicitudes(id);
-            if (solic.IdSolicitud == 0)
+            DocumentoSolicitud doc = new DocumentoSolicitud(id);
+            if (doc.IdDocumento == 0)
             {
                 return HttpNotFound();
             }
-            return View(solic);
+            return View(doc);
         }
 
         public ActionResult Create()
         {
-            var cli = from s in Clientes.ClienteList() select s;
+            var soli = from s in Solicitudes.SolicitudesList() select s;
             List<SelectListItem> items = new List<SelectListItem>();
-            foreach (var clien in cli)
+            foreach (var sol in soli)
             {
                 items.Add(new SelectListItem
                 {
-                    Value = clien.IdCliente.ToString(),
-                    Text = clien.Nombre,
+                    Value = sol.IdSolicitud.ToString(),
+                    Text = sol.Descripcion,
                     Selected = false
                 });
             }
 
             ViewBag.items = items;
+
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdSolicitud,Descripcion,Detalle,Fecha,FechaFinalizado,Estatus,IdCliente,IdUsuario,IdIngeniero,FechaAgenda")] Solicitudes solic)
+        public ActionResult Create([Bind(Include = "IdDocumento,IdSolicitud,NombreDocumento,FechaAgregado,IdUsuario,TipoDocumento")] DocumentoSolicitud doc)
         {
             if (ModelState.IsValid)
             {
-                solic.Guardar();
+                doc.Guardar();
                 return RedirectToAction("Index");
             }
 
-            return View(solic);
+            return View(doc);
         }
 
         public ActionResult Edit(Decimal id)
         {
-            var cli = from s in Clientes.ClienteList() select s;
+            var soli = from s in Solicitudes.SolicitudesList() select s;
             List<SelectListItem> items = new List<SelectListItem>();
-            foreach (var clien in cli)
+            foreach (var sol in soli)
             {
                 items.Add(new SelectListItem
                 {
-                    Value = clien.IdCliente.ToString(),
-                    Text = clien.Nombre,
+                    Value = sol.IdSolicitud.ToString(),
+                    Text = sol.Descripcion,
                     Selected = false
                 });
             }
 
             ViewBag.items = items;
-
-            List<SelectListItem> tipos = new List<SelectListItem>()
-            {
-                new SelectListItem { Value = "1", Text ="No iniciado", Selected = false },
-                new SelectListItem { Value = "2", Text = "Iniciado", Selected = false },
-                new SelectListItem { Value = "3", Text = "Terminado", Selected = false }
-            };
-
-            ViewBag.tipos = tipos;
             if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Solicitudes solic = new Solicitudes(id);
-            if (solic.IdSolicitud == 0)
+            DocumentoSolicitud doc = new DocumentoSolicitud(id);
+            if (doc.IdDocumento == 0)
             {
                 return HttpNotFound();
             }
-            return View(solic);
+            return View(doc);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdSolicitud,Descripcion,Detalle,Fecha,FechaFinalizado,Estatus,IdCliente,IdUsuario,IdIngeniero,FechaAgenda")] Solicitudes solic)
+        public ActionResult Edit([Bind(Include = "IdDocumento,IdSolicitud,NombreDocumento,FechaAgregado,IdUsuario,TipoDocumento")] DocumentoSolicitud doc)
         {
             if (ModelState.IsValid)
             {
-                solic.Guardar();
+                doc.Guardar();
                 return RedirectToAction("Index");
             }
-            return View(solic);
+            return View(doc);
         }
 
         public ActionResult Delete(Decimal id)
@@ -131,20 +122,20 @@ namespace GlabsHelps.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Solicitudes solic = new Solicitudes(id);
-            if (solic.IdSolicitud == 0)
+            DocumentoSolicitud doc = new DocumentoSolicitud(id);
+            if (doc.IdDocumento == 0)
             {
                 return HttpNotFound();
             }
-            return View(solic);
+            return View(doc);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Decimal id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Solicitudes solic = new Solicitudes(id);
-            solic.Eliminar();
+            DocumentoSolicitud doc = new DocumentoSolicitud(id);
+            doc.Eliminar();
             return RedirectToAction("Index");
         }
     }

@@ -1,0 +1,65 @@
+﻿@model GlabsHelps.Models.DocumentoSolicitud
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = null;
+}
+
+<h3>Estas seguro de eliminarlo?</h3>
+<div>
+    <h4>Documento Solicitud</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Id Solicitud
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdSolicitud)
+        </dd>
+
+        <dt>
+            Nombre Documento
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreDocumento)
+        </dd>
+
+        <dt>
+            Fecha Agregado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaAgregado)
+        </dd>
+
+        <dt>
+            Id Usuario
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdUsuario)
+        </dd>
+
+        <dt>
+            Tipo Documento
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoDocumento)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Eliminar" class="btn btn-default" style="font-family: 'Times New Roman';" />
+    <a href="/DocumentoSolicituds/Index" class="btn btn-default" style="font-family: 'Times New Roman';">
+        Salir
+    </a>
+</div>
+    }
+</div>

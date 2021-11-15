@@ -128,6 +128,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\DocumentoSolicitudsController.cs" />
     <Compile Include="Controllers\EquiposController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SolicitudesController.cs" />
@@ -159,6 +160,7 @@
     <None Include="Properties\PublishProfiles\GlabsHelps20211019131207 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Botones\ClientesBotones.js" />
+    <Content Include="Scripts\Botones\DocumentoSolicitudBotones.js" />
     <Content Include="Scripts\Botones\EquiposBotones.js" />
     <Content Include="Scripts\Botones\SolicitudesBotones.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -200,6 +202,11 @@
     <Content Include="Views\Solicitudes\Details.cshtml" />
     <Content Include="Views\Solicitudes\Edit.cshtml" />
     <Content Include="Views\Solicitudes\Index.cshtml" />
+    <Content Include="Views\DocumentoSolicituds\Create.cshtml" />
+    <Content Include="Views\DocumentoSolicituds\Delete.cshtml" />
+    <Content Include="Views\DocumentoSolicituds\Details.cshtml" />
+    <Content Include="Views\DocumentoSolicituds\Edit.cshtml" />
+    <Content Include="Views\DocumentoSolicituds\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

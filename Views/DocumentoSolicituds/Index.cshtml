@@ -1,11 +1,11 @@
-﻿@model IEnumerable<GlabsHelps.Models.Solicitudes>
+﻿@model IEnumerable<GlabsHelps.Models.DocumentoSolicitud>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Solicitudes</h2>
+<h2>Documento Solicitud</h2>
 
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -27,7 +27,7 @@
             </div>
             <div class="col-xs-3">
                 <a id="ButtonNuevo" data-toggle="modal" data-target="#PopupEdit" class="btn btn-default border-dark" data-url="@Url.Action("Create")" style="position:relative; left:25%;">
-                    Nueva Solicitud
+                    Nuevo Documento
                 </a>
             </div>
         </div>
@@ -49,31 +49,19 @@
     <table class="table table-striped table-bordered table-hover table-sm">
         <tr>
             <th>
-                Descripción
+                Id Solicitud
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Detalle)
+                Nombre Documento
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Fecha)
-            </th>
-            <th>
-                Fecha Finalizado
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estatus)
-            </th>
-            <th>
-                Id Cliente
+                Fecha Agregado
             </th>
             <th>
                 Id Usuario
             </th>
             <th>
-                Id Ingeniero
-            </th>
-            <th>
-                Fecha Agenda
+                Tipo Documento
             </th>
             <th></th>
         </tr>
@@ -82,49 +70,38 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Descripcion)
+                    @Html.DisplayFor(modelItem => item.IdSolicitud)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Detalle)
+                    @Html.DisplayFor(modelItem => item.NombreDocumento)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Fecha)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaFinalizado)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Estatus)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdCliente)
+                    @Html.DisplayFor(modelItem => item.FechaAgregado)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.IdUsuario)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IdIngeniero)
+                    @Html.DisplayFor(modelItem => item.TipoDocumento)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FechaAgenda)
-                </td>
-                <td>
-                    <a id="EditarButton" data-toggle="modal" data-target="#PopupEdit" href="/Solicitudes/Edit/@item.IdSolicitud" class="btn btn-primary">
+                    <a id="EditarButton" data-toggle="modal" data-target="#PopupEdit" href="/DocumentoSolicituds/Edit/@item.IdSolicitud" class="btn btn-primary">
                         <i class="glyphicon glyphicon-pencil" style="color: black;"></i>
                     </a>
-                    <a id="DetalleButton" data-toggle="modal" data-target="#PopupEdit" href="/Solicitudes/Details/@item.IdSolicitud" class="btn btn-primary">
+                    <a id="DetalleButton" data-toggle="modal" data-target="#PopupEdit" href="/DocumentoSolicituds/Details/@item.IdSolicitud" class="btn btn-primary">
                         <i class="glyphicon glyphicon-trash" style="color: black;"></i>
                     </a>
-                    <a id="EliminarButton" data-toggle="modal" data-target="#PopupEdit" href="/Solicitudes/Delete/@item.IdSolicitud" class="btn btn-primary">
+                    <a id="EliminarButton" data-toggle="modal" data-target="#PopupEdit" href="/DocumentoSolicituds/Delete/@item.IdSolicitud" class="btn btn-primary">
                         <i class="glyphicon glyphicon-trash" style="color: black;"></i>
                     </a>
                 </td>
             </tr>
         }
+
     </table>
 
     @section scripts{
-        <script src="~/Scripts/Botones/SolicitudesBotones.js"></script>
-        }
-</body>
 
+        <script src="~/Scripts/Botones/DocumentoSolicitudBotones.js"></script>
+    }
+</body>

@@ -1,0 +1,60 @@
+﻿@model GlabsHelps.Models.DocumentoSolicitud
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DocumentoSolicitud</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Id Solicitud
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdSolicitud)
+        </dd>
+
+        <dt>
+            Nombre Documento
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreDocumento)
+        </dd>
+
+        <dt>
+            Fecha Agregado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaAgregado)
+        </dd>
+
+        <dt>
+            Id Usuario
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdUsuario)
+        </dd>
+
+        <dt>
+            Tipo Documento
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoDocumento)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="/DocumentoSolicituds/Index" class="btn btn-primary" style="font-family: 'Times New Roman';">
+        Cancelar
+    </a>
+</p>
