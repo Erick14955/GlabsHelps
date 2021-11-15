@@ -18,6 +18,7 @@ namespace GlabsHelps.Controllers
             return View(DocumentoSolicitud.DocumentoSolicitudList());
         }
 
+        [HttpPost]
         public ActionResult Index(string busqueda)
         {
             var solic = from s in DocumentoSolicitud.DocumentoSolicitudList() select s;
