@@ -1,14 +1,18 @@
-﻿using GlabsHelps.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using GlabsHelps.Data;
+using GlabsHelps.Models;
 
 namespace GlabsHelps.Controllers
 {
-    public class HomeController : Controller
+    public class UsuariosController : Controller
     {
         public ActionResult Index(string message = "")
         {
@@ -19,14 +23,14 @@ namespace GlabsHelps.Controllers
         [HttpPost]
         public ActionResult Index(string email, string clave)
         {
-            if(!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(clave))
+            if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(clave))
             {
                 var cli = from s in Usuario.UsuarioList() select s;
                 var user = cli.FirstOrDefault(e => e.CorreoElectronico == email && e.Password == clave);
-                if(user != null)
+                if (user != null)
                 {
                     FormsAuthentication.SetAuthCookie(user.CorreoElectronico, true);
-                    return RedirectToAction("About");   
+                    return RedirectToAction("Index", "Clientes");
                 }
                 else
                 {
@@ -39,29 +43,28 @@ namespace GlabsHelps.Controllers
             }
         }
 
-        [HttpGet]
-        public ActionResult About()
+        public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult About([Bind(Include = "IdUsuario,NombreUsuario,CorreoElectronico,Password")] Usuario usua)
+        public ActionResult Create([Bind(Include = "IdUsuario,NombreUsuario,CorreoElectronico,Password")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-                usua.Guardar();
+                usuario.Guardar();
                 return RedirectToAction("Index");
             }
 
-            return View(usua);
+            return View(usuario);
         }
 
-        public ActionResult Contact()
+        public void Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index");
+            RedirectToAction("Index", "Home");
         }
     }
 }

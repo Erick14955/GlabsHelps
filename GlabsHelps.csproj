@@ -132,6 +132,7 @@
     <Compile Include="Controllers\EquiposController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SolicitudesController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Data\GlabsHelpsContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -142,6 +143,7 @@
     <Compile Include="Models\DocumentoSolicitud.cs" />
     <Compile Include="Models\Equipos.cs" />
     <Compile Include="Models\Solicitudes.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -207,6 +209,8 @@
     <Content Include="Views\DocumentoSolicituds\Details.cshtml" />
     <Content Include="Views\DocumentoSolicituds\Edit.cshtml" />
     <Content Include="Views\DocumentoSolicituds\Index.cshtml" />
+    <Content Include="Views\Usuarios\Create.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

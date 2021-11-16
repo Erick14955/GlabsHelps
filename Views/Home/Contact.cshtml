@@ -1,17 +1,46 @@
-﻿@{
+﻿@model GlabsHelps.Models.Usuario
+
+@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h1>Registrarse</h1>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Nombre</label>
+            <div class="col-md-10">
+                <input id="NombreUsuario" name="NombreUsuario" placeholder="Nombre" type="text" value="" class="form-control" required oninvalid="this.setCustomValidity('El campo Nombre no puede quedar vacío')" oninput="this.setCustomValidity('')" />
+            </div>
+        </div>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+        <div class="form-group">
+            <label class="control-label col-md-2">Correo Electronico</label>
+            <div class="col-md-10">
+                <input id="CorreoElectronico" name="CorreoElectronico" type="email" placeholder="Correo Electronico" value="" class="form-control" required oninvalid="this.setCustomValidity('Favor especificar una dirección correo válida.')" oninput="this.setCustomValidity('')" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Contraseña</label>
+            <div class="col-md-10">
+                <input id="Password" name="Password" type="password" placeholder="Contraseña" value="" class="form-control" required oninvalid="this.setCustomValidity('Indique una contraseña válida')" oninput="this.setCustomValidity('')" />
+            </div>
+        </div>
+
+        <div class="col-md-offset-2 col-md-10">
+            <a href="/Home/Index" class="btn btn-primary">
+                Cancelar
+            </a>
+            <input type="submit" value="Registrarse" class="btn btn-primary" style="font-family: 'Times New Roman';" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

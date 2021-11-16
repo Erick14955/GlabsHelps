@@ -22,5 +22,7 @@ namespace GlabsHelps.Data
         public System.Data.Entity.DbSet<GlabsHelps.Models.Solicitudes> Solicitudes { get; set; }
 
         public System.Data.Entity.DbSet<GlabsHelps.Models.DocumentoSolicitud> DocumentoSolicituds { get; set; }
+
+        public System.Data.Entity.DbSet<GlabsHelps.Models.Usuario> Usuarios { get; set; }
     }
 }
