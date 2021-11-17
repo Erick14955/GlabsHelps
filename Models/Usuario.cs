@@ -67,9 +67,7 @@ namespace GlabsHelps.Models
 			cmd.Parameters["@ValorRetorno"].Direction = ParameterDirection.Output; 
 
 			return DataAccess.SaveSPIntValueReturn("@ValorRetorno", ref cmd);
-
 		}
-
 
 		public bool Eliminar()
 		{
@@ -82,8 +80,6 @@ namespace GlabsHelps.Models
 			cmd.Parameters["@ValorRetorno"].Direction = ParameterDirection.Output; 
 
 			return DataAccess.SaveSPIntValueReturn("@ValorRetorno", ref cmd);
-
 		}
 	}
-
 }

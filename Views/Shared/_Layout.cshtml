@@ -20,14 +20,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
-                        <li>@Html.ActionLink("Equipos", "Index", "Equipos")</li>
-                        <li>@Html.ActionLink("Solicitudes", "Index", "Solicitudes")</li>
-                        <li>@Html.ActionLink("Documento Solicitud", "Index", "DocumentoSolicituds")</li>
-                        <li><a href="/Home/Contact">Cerrar Sesión</a></li>
-                    }
+                    <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
+                    <li>@Html.ActionLink("Equipos", "Index", "Equipos")</li>
+                    <li>@Html.ActionLink("Solicitudes", "Index", "Solicitudes")</li>
+                    <li>@Html.ActionLink("Documento Solicitud", "Index", "DocumentoSolicituds")</li>
+                    <li><a href="/Usuarios/CerrarSesion">Cerrar Sesión</a></li>
                 </ul>
             </div>
         </div>

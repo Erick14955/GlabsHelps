@@ -10,6 +10,7 @@ using GlabsHelps.Models;
 
 namespace GlabsHelps.Controllers
 {
+    [Authorize]
     public class EquiposController : Controller
     {
         public ActionResult Index()

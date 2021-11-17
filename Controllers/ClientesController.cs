@@ -11,9 +11,9 @@ using GlabsHelps.Models;
 
 namespace GlabsHelps.Controllers
 {
+    [Authorize]
     public class ClientesController : Controller
     {
-        //int eso = 0;
         public ActionResult Index()
         {
 
@@ -31,8 +31,7 @@ namespace GlabsHelps.Controllers
             else
             {
                 return View(Clientes.ClienteList());
-            }
-           
+            } 
         }
 
         public ActionResult Details(Decimal id)

@@ -11,6 +11,7 @@ using GlabsHelps.Models;
 
 namespace GlabsHelps.Controllers
 {
+    [Authorize]
     public class SolicitudesController : Controller
     {
         public ActionResult Index()

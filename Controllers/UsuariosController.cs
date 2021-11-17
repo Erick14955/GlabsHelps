@@ -29,7 +29,7 @@ namespace GlabsHelps.Controllers
                 var user = cli.FirstOrDefault(e => e.CorreoElectronico == email && e.Password == clave);
                 if (user != null)
                 {
-                    FormsAuthentication.SetAuthCookie(user.CorreoElectronico, true);
+                    FormsAuthentication.SetAuthCookie(user.CorreoElectronico, false);
                     return RedirectToAction("Index", "Clientes");
                 }
                 else
@@ -42,7 +42,7 @@ namespace GlabsHelps.Controllers
                 return Index("Llene los campos para iniciar sesión");
             }
         }
-
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -50,17 +50,22 @@ namespace GlabsHelps.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdUsuario,NombreUsuario,CorreoElectronico,Password")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "IdUsuario,NombreUsuario,CorreoElectronico,Password")] Usuario usua)
         {
             if (ModelState.IsValid)
             {
-                usuario.Guardar();
+                usua.Guardar();
                 return RedirectToAction("Index");
             }
 
-            return View(usuario);
+            return View(usua);
         }
 
+        public ActionResult CerrarSesion()
+        {
+            Logout();
+            return RedirectToAction("Index");
+        }
         public void Logout()
         {
             FormsAuthentication.SignOut();
