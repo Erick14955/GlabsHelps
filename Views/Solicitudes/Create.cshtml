@@ -4,6 +4,7 @@
     ViewBag.Title = "Create";
     Layout = null;
     List<SelectListItem> items = (List<SelectListItem>)ViewBag.items;
+    List<SelectListItem> id = (List<SelectListItem>)ViewBag.id;
 }
 
 <style>
@@ -104,10 +105,14 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdUsuario, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Id Usuario</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IdUsuario, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdUsuario, "", new { @class = "text-danger" })
+                <select id="IdUsuario" name="IdUsuario" type="text" value="" class="form-control" disabled="disabled" @*required oninvalid="this.setCustomValidity('El campo Id Ingeniero no puede quedar vacío')" oninput="this.setCustomValidity('')"*@>
+                    @foreach (var ids in id)
+                    {
+                        <option value="@Convert.ToInt32(ids.Value)">@ids.Text</option>
+                    }
+                </select>
             </div>
         </div>
 

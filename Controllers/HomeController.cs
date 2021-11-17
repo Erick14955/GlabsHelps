@@ -10,6 +10,7 @@ namespace GlabsHelps.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize]
         public ActionResult Index(string message = "")
         {
             ViewBag.Message = message;

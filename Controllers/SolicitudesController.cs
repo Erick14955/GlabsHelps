@@ -60,8 +60,23 @@ namespace GlabsHelps.Controllers
                     Selected = false
                 });
             }
-
+            
             ViewBag.items = items;
+
+            List<SelectListItem> usuarios = new List<SelectListItem>();
+            var usua = from s in Usuario.UsuarioList() where s.CorreoElectronico == User.Identity.Name select s;
+            foreach(var usuar in usua)
+            {
+                usuarios.Add(new SelectListItem
+                {
+                    Value = usuar.IdUsuario.ToString(),
+                    Text = usuar.NombreUsuario,
+                    Selected = false
+                });
+            }
+
+            ViewBag.id = usuarios;
+
             return View();
         }
 
